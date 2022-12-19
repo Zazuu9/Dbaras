@@ -1,0 +1,33 @@
+@import "../../Styles/styles.scss";
+
+.DeletePopup {
+    @include Flex_Column;
+    background-color: $backgroundPopupMiddle;
+    padding: 50px 100px;
+    border-radius: 15px;
+    .Delete_Cancel {
+        @include Flex_Center_Center;
+        .Universal {
+            border: none;
+            width: 150px;
+            padding: 10px 15px;
+            font-size: 18px;
+            margin: 5px 15px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: 0.3s;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+        .Delete {
+            background-color: $validate;
+        }
+        .Cancel {
+            background-color: $cancel;
+        }
+    }
+    .Delete_Message {
+        text-align: center;
+    }
+}

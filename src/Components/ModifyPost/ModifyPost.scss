@@ -1,0 +1,65 @@
+@import "../../Styles/styles.scss";
+
+.ModifyPopup {
+    position: fixed;
+    .form_modifypost {
+        background-color: $backgroundPopupMiddle;
+        display: flex;
+        flex-direction: column;
+        padding: 50px 100px;
+        border-radius: 15px;
+        label {
+            @include Flex_Column;
+            padding: 6px 0px;
+        }
+        input {
+            width: 500px;
+        }
+        .vendu_true_false {
+            display: flex;
+            label {
+                width: 15%;
+            }
+            .true_false {
+                width: 85%;
+                display: flex;
+                justify-content: space-evenly;
+                .radio_label {
+                    display: flex;
+                    flex-direction: row;
+                    .radio {
+                        width: 15px;
+                        height: 15px;
+                    }
+                }
+            }
+        }
+        .Modify_Cancel {
+            @include Flex_Center_Center;
+            .Universal {
+                border: none;
+                width: 150px;
+                padding: 10px 15px;
+                font-size: 18px;
+                margin: 5px 15px;
+                border-radius: 100px;
+                cursor: pointer;
+                transition: 0.3s;
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+            .Modify {
+                background-color: $validate;
+            }
+            .Cancel {
+                background-color: $cancel;
+            }
+        }
+        .mesasge_succes_error {
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+@import "./normalize.scss";
+@import "./font.scss";
+@import "./mixins.scss";
+@import "./keyframes.scss";
+@import "./colors.scss";
+
+#root {
+    @include Flex_Column_Center_Center;
+}

@@ -1,0 +1,70 @@
+@import "../../Styles/styles.scss";
+
+.Post {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    width: 850px;
+    min-height: 200px;
+    max-height: 250px;
+    border-radius: 20px;
+    margin: 15px 0px;
+
+    .Post_image {
+        width: 220px;
+        object-fit: cover;
+        border-radius: 20px 0px 0px 20px;
+    }
+    .Post_title_message {
+        padding: 0px 15px;
+        .Post_title {
+        }
+        .Post_message {
+        }
+        .Post_categories_price {
+            position: absolute;
+            bottom: 10px;
+            .Post_categories {
+                margin-bottom: 0;
+            }
+            .Post_etat_price {
+                display: flex;
+                align-items: center;
+                margin: 0;
+                margin-top: 5px;
+                gap: 15px;
+                .Post_etat {
+                    margin: 0;
+                }
+                .Post_price {
+                    margin: 0;
+                }
+            }
+        }
+        .Link_to_post {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.5s;
+            &:hover {
+                transform: scale(1.1);
+                transition: 0.3s;
+            }
+        }
+    }
+    .Vendu {
+        position: absolute;
+        width: 170px;
+        right: 0;
+    }
+}
+
+.bold {
+    font-weight: bold;
+}

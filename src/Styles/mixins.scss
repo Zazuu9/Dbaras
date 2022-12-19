@@ -1,0 +1,73 @@
+@mixin Flex_Center_Center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin Flex_Center_Center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin Flex_Column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin Flex_Column_Center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin Flex_Column_Center_Center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin Flex_ColumnReverse_Center_Center {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin Flex_Column_Center_FlexStart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+@mixin Flex_SpaceBetween_Center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin Flex_Center_SpaceBetween_Center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+@mixin Flex_SpaceEvenly_Center {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@mixin Flex_Wrap_Center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@mixin Flex_ColumnReverse_Center_Center {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+}

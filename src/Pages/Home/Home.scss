@@ -1,0 +1,6 @@
+@import "../../Styles/styles.scss";
+
+.Posts {
+    @include Flex_ColumnReverse_Center_Center;
+    width: 100%;
+}

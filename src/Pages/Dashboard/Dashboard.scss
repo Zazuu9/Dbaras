@@ -1,0 +1,6 @@
+@import "../../Styles/styles.scss";
+
+.Dashboard {
+    @include Flex_Column_Center_Center;
+    width: 100%;
+}

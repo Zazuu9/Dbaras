@@ -1,0 +1,16 @@
+@import "../../Styles/styles.scss";
+
+.Create_post {
+    padding-top: 50px;
+    .form_createpost {
+        display: flex;
+        flex-direction: column;
+        label {
+            @include Flex_Column;
+            padding: 6px 0px;
+        }
+        input {
+            width: 300px;
+        }
+    }
+}

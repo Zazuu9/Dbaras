@@ -1,0 +1,43 @@
+@import "../../Styles/styles.scss";
+
+.test11 {
+    @include Flex_Column_Center;
+    width: 100%;
+    height: 100vh;
+    .Postinfo {
+        @include Flex_Column_Center_Center;
+        width: 60%;
+        .Post_image {
+            max-width: 300px;
+        }
+        .Post_message {
+            text-align: center;
+        }
+    }
+    .modify_delete_btn {
+        border: none;
+        width: 150px;
+        padding: 10px 15px;
+        font-size: 18px;
+        margin: 5px 15px;
+        border-radius: 100px;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    .modify_btn {
+        background-color: $validate;
+    }
+    .delete_btn {
+        background-color: $cancel;
+    }
+    .Popup {
+        @include Flex_Column_Center_Center;
+        position: fixed;
+        background-color: $backgroundPopup;
+        height: 100%;
+        width: 100%;
+    }
+}
