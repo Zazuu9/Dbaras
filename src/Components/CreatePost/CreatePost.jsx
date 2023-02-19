@@ -8,10 +8,10 @@ import "./CreatePost.scss";
 function CreatePost() {
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
-    const [categories, setCategories] = useState("");
+    const [categories, setCategories] = useState(" ");
     const [price, setPrice] = useState("");
-    const [reserved, setReserved] = useState("");
-    const [etat, setEtat] = useState("");
+    const [reserved, setReserved] = useState("false");
+    const [etat, setEtat] = useState("État neuf");
     const [image, setImage] = useState([]);
 
     const handleTitleChange = (event) => {
@@ -65,7 +65,7 @@ function CreatePost() {
                 console.error(error);
             });
     };
-    console.log(etat);
+
     return (
         <div className="Create_post">
             <form onSubmit={handleSubmit}>
@@ -81,7 +81,11 @@ function CreatePost() {
                 <br />
                 <label>
                     Categories:
-                    <input type="text" value={categories} onChange={handleCategoriesChange} />
+                    <Select className="Selector" value={categories} onChange={handleCategoriesChange}>
+                        <MenuItem value={" "}>Veuillez choisir une catégorie</MenuItem>
+                        <MenuItem value={"Meubles"}>Meubles</MenuItem>
+                        <MenuItem value={"Électroménager"}>Électroménager</MenuItem>
+                    </Select>
                 </label>
                 <br />
                 <label>
@@ -90,8 +94,8 @@ function CreatePost() {
                 </label>
                 <br />
                 <label>
-                    Reserved:
-                    <Select value={reserved} onChange={handleReservedChange}>
+                    Vendu:
+                    <Select className="Selector" value={reserved} onChange={handleReservedChange}>
                         <MenuItem value={"true"}>Oui</MenuItem>
                         <MenuItem value={"false"}>Non</MenuItem>
                     </Select>
@@ -99,7 +103,7 @@ function CreatePost() {
                 <br />
                 <label>
                     État:
-                    <Select value={etat} onChange={handleEtatChange}>
+                    <Select className="Selector" value={etat} onChange={handleEtatChange}>
                         <MenuItem value={"État neuf"}>État neuf</MenuItem>
                         <MenuItem value={"Très bon état"}>Très bon état</MenuItem>
                         <MenuItem value={"Bon état"}>Bon état</MenuItem>
