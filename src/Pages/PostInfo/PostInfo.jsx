@@ -3,13 +3,18 @@ import React, { useEffect, useState } from "react";
 import DeletePost from "../../Components/DeletePost/DeletePost";
 import ModifyPost from "../../Components/ModifyPost/ModifyPost";
 import BDDService from "../../Services/BDDService";
+import { Link } from "react-router-dom";
+
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
+
+import { Helmet } from "react-helmet";
 
 import "./PostInfo.scss";
 
 function PostInfo() {
     const url = window.location;
     const urlId = url.pathname.split("/")[2];
-    // console.log(urlId);
 
     const [cookie, setCookie] = useState(undefined);
     const [post, setPost] = useState();
@@ -24,11 +29,10 @@ function PostInfo() {
     }, []);
 
     async function getPostInfo() {
-        const postInfo = await fetch(BDDService.localPost + "/" + urlId);
+        const postInfo = await fetch(BDDService.sitePost + "/" + urlId);
         const resPostInfo = await postInfo.json();
         setPost(resPostInfo);
         setIsLoading(true);
-        console.log(resPostInfo);
     }
 
     if (post !== undefined) {
@@ -40,22 +44,35 @@ function PostInfo() {
         <>
             {isLoading ? (
                 <div className="test11">
-                    <div className="Postinfo">
+                    <Helmet>
+                        <title>{post.title} || Nom du site</title>
+                    </Helmet>
+                    <Link to="/">Accueil</Link>
+                    <AliceCarousel>
                         {post.images.map((image) => (
                             <img
-                                src={image}
+                                src={image.split("http://127.0.0.1:8000").join("https://api.groupomania.kgouaille.fr")}
                                 alt=""
-                                title={image.split("/")[4].split(".")[0]}
                                 key={image.split("/")[4]}
-                                className="Post_image"
+                                className="sliderimg"
                             />
                         ))}
-                        <h2 className="Post_title">{post.title}</h2>
-                        <h3 className="Post_message">{post.message}</h3>
-                        <h3 className="Post_categories">Catégorie: {post.categories}</h3>
-                        <h3 className="Post_price">Prix: {priceModified} €</h3>
-                        <h3 className="Post_etat">Etat: {post.etat}</h3>
-                    </div>
+                    </AliceCarousel>
+                    <section className="Postinfo">
+                        <div>
+                            <h2 className="Post_title">{post.title}</h2>
+                            <h3 className="Post_message">{post.message}</h3>
+                            <h3 className="Post_categories">
+                                Catégorie: <span className="Categorie">{post.categories}</span>{" "}
+                            </h3>
+                            <h3 className="Post_price">
+                                Prix: <span className="Price">{priceModified} €</span>
+                            </h3>
+                            <h3 className="Post_etat">
+                                Etat: <span className="Etat">{post.etat}</span>
+                            </h3>
+                        </div>
+                    </section>
                     {cookie === "63739c056cd31aad2a9145d4" ? (
                         <div className="Modify_Delete">
                             <button

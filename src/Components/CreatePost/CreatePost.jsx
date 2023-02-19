@@ -1,108 +1,120 @@
 import React, { useState } from "react";
 import BDDService from "../../Services/BDDService";
+import axios from "axios";
+import { MenuItem, Select } from "@mui/material";
 
 import "./CreatePost.scss";
 
 function CreatePost() {
     const [title, setTitle] = useState("");
     const [message, setMessage] = useState("");
-    const [image, setImage] = useState(null);
     const [categories, setCategories] = useState("");
     const [price, setPrice] = useState("");
+    const [reserved, setReserved] = useState("");
     const [etat, setEtat] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
+    const [image, setImage] = useState([]);
 
-    const CreatePostSubmit = (e) => {
-        e.preventDefault();
+    const handleTitleChange = (event) => {
+        setTitle(event.target.value);
+    };
 
-        let formData = new FormData();
-        if (message === "" && title === "") {
-            formData.append("title", title);
-            formData.append("message", message);
-            formData.append("image", image);
-            formData.append("categories", categories);
-            formData.append("price", price);
-            formData.append("price", price);
-            formData.append("etat", etat);
-        } else {
-            formData.append("title", title);
-            formData.append("message", message);
-            formData.append("image", image);
-            formData.append("categories", categories);
-            formData.append("price", price);
-            formData.append("etat", etat);
+    const handleMessageChange = (event) => {
+        setMessage(event.target.value);
+    };
+
+    const handleCategoriesChange = (event) => {
+        setCategories(event.target.value);
+    };
+
+    const handlePriceChange = (event) => {
+        setPrice(event.target.value);
+    };
+
+    const handleReservedChange = (event) => {
+        setReserved(event.target.value);
+    };
+
+    const handleEtatChange = (event) => {
+        setEtat(event.target.value);
+    };
+
+    const handleImageChange = (event) => {
+        setImage(event.target.files);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("message", message);
+        formData.append("categories", categories);
+        formData.append("price", price);
+        formData.append("reserved", reserved);
+        formData.append("etat", etat);
+        for (let i = 0; i < image.length; i++) {
+            formData.append("image", image[i]);
         }
 
-        fetch(BDDService.sitePost + "/createpost", {
-            method: "POST",
-            credentials: "include",
-            body: formData,
-        })
-            .then((res) => {
-                res.json();
-                if (res.status !== 201) {
-                    console.log("impossible");
-                    setErrorMessage("Impossible de publier.");
-                } else {
-                    console.log("Publication créé");
-                    setErrorMessage("Publication créé !");
-                    setTimeout(() => {
-                        setErrorMessage("");
-                        document.forms["form_createpost"].reset();
-                        window.location.reload();
-                    }, 1000);
-                }
+        axios
+            .post(BDDService.sitePost + "/createpost", formData)
+            .then((response) => {
+                console.log(response);
             })
-            .then((res) => {
-                setImage(null);
-                setMessage("");
-            })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                console.error(error);
+            });
     };
+    console.log(etat);
     return (
         <div className="Create_post">
-            <form action="post" className="form_createpost" name="form_createpost">
-                <label htmlFor="title">
-                    Titre de l'annonce :
-                    <input type="text" id="title" name="title" onChange={(e) => setTitle(e.target.value)} />
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Title:
+                    <input type="text" value={title} onChange={handleTitleChange} />
                 </label>
-                <label htmlFor="message">
-                    Message de l'annonce :
-                    <input type="text" id="message" name="message" onChange={(e) => setMessage(e.target.value)} />
+                <br />
+                <label>
+                    Message:
+                    <input type="text" value={message} onChange={handleMessageChange} />
                 </label>
-                <label htmlFor="image">
-                    <input
-                        type="file"
-                        id="image"
-                        name="image"
-                        onChange={(e) => setImage(e.target.files[0])}
-                        accept="image/png; image/jpeg, image/jpg"
-                    />
+                <br />
+                <label>
+                    Categories:
+                    <input type="text" value={categories} onChange={handleCategoriesChange} />
                 </label>
-                <label htmlFor="categories">
-                    Catégorie :
-                    <input list="data_categorie" onChange={(e) => setCategories(e.target.value)} />
-                    <datalist id="data_categorie">
-                        <option value="Meuble" />
-                    </datalist>
+                <br />
+                <label>
+                    Price:
+                    <input type="number" value={price} onChange={handlePriceChange} />
                 </label>
-                <label htmlFor="price">
-                    Prix de l'objet :
-                    <input type="number" id="price" name="price" onChange={(e) => setPrice(e.target.value)} />
+                <br />
+                <label>
+                    Reserved:
+                    <Select value={reserved} onChange={handleReservedChange}>
+                        <MenuItem value={"true"}>Oui</MenuItem>
+                        <MenuItem value={"false"}>Non</MenuItem>
+                    </Select>
                 </label>
-                <label htmlFor="etat">
-                    Etat :
-                    <input list="data_etat" onChange={(e) => setEtat(e.target.value)} />
-                    <datalist id="data_etat">
-                        <option value="État neuf" />
-                        <option value="Très bon état" />
-                        <option value="Bon état" />
-                        <option value="État moyen" />
-                        <option value="Mauvais état" />
-                    </datalist>
+                <br />
+                <label>
+                    État:
+                    <Select value={etat} onChange={handleEtatChange}>
+                        <MenuItem value={"État neuf"}>État neuf</MenuItem>
+                        <MenuItem value={"Très bon état"}>Très bon état</MenuItem>
+                        <MenuItem value={"Bon état"}>Bon état</MenuItem>
+                        <MenuItem value={"État satisfaisant"}>État satisfaisant</MenuItem>
+                        <MenuItem value={"Pour pièces"}>Pour pièces</MenuItem>
+                    </Select>
                 </label>
-                <input type="submit" id="login" className="publish_btn" value="Publier" onClick={CreatePostSubmit} />
-                {errorMessage !== "" ? <div className="signin_error">{errorMessage}</div> : ""}
+                <br />
+                <label>
+                    Image:
+                    <input type="file" multiple onChange={handleImageChange} />
+                </label>
+                <br />
+
+                <button type="submit">Envoyer</button>
             </form>
         </div>
     );

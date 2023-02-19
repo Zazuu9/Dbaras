@@ -4,14 +4,80 @@
     @include Flex_Column_Center;
     width: 100%;
     height: 100vh;
+    // <-----------------------------CSS Carousel----------------------------->
+    .alice-carousel {
+        width: 800px;
+        .alice-carousel__wrapper {
+            height: 500px;
+            border-radius: 25px;
+            .alice-carousel__stage-item {
+                text-align: center;
+                .sliderimg {
+                    height: 100%;
+                    width: auto;
+                    object-fit: cover;
+                    border-radius: 25px;
+                }
+            }
+        }
+        .alice-carousel__dots {
+            .alice-carousel__dots-item {
+                background-color: transparent;
+                border: 2px solid black;
+            }
+            .__active {
+                background-color: black;
+            }
+        }
+        .alice-carousel__prev-btn {
+            span {
+                font-size: 30px;
+                color: black;
+            }
+        }
+        .alice-carousel__next-btn {
+            span {
+                font-size: 30px;
+                color: black;
+            }
+        }
+    }
+    // <-----------------------------CSS Carousel----------------------------->
     .Postinfo {
         @include Flex_Column_Center_Center;
         width: 60%;
-        .Post_image {
-            max-width: 300px;
+        .Post_images {
+            @include Flex_Center_Center;
+            flex-wrap: wrap;
+            max-width: 900px;
+            .Post_image {
+                width: 300px;
+                border-radius: 20px;
+                margin: 5px;
+                height: 300px;
+                object-fit: cover;
+            }
         }
         .Post_message {
-            text-align: center;
+            font-weight: normal;
+        }
+        .Post_categories {
+            font-weight: normal;
+            .Categorie {
+                font-weight: bold;
+            }
+        }
+        .Post_price {
+            font-weight: normal;
+            .Price {
+                font-weight: bold;
+            }
+        }
+        .Post_etat {
+            font-weight: normal;
+            .Etat {
+                font-weight: bold;
+            }
         }
     }
     .modify_delete_btn {

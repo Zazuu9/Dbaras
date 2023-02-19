@@ -14,7 +14,7 @@ function Signup() {
         userInfo.email = document.getElementById("email").value;
         userInfo.password = document.getElementById("password").value;
 
-        fetch(BDDService.siteAuth + "/signup", {
+        fetch(BDDService.localAuth + "/signup", {
             method: "POST",
             body: JSON.stringify(userInfo),
             headers: {

@@ -31,13 +31,11 @@ function PostCard({ id }) {
         <div className="Post">
             {isLoading ? (
                 <>
-                    {/* <img
-                        src={post.image.split("http://127.0.0.1:8000").join("https://api.groupomania.kgouaille.fr")}
+                    <img
+                        src={post.images[0].split("http://127.0.0.1:8000").join("https://api.groupomania.kgouaille.fr")}
                         alt=""
                         className="Post_image"
-                    /> */}
-
-                    <img src={post.images[0]} alt="" className="Post_image" />
+                    />
                     <div className="Post_title_message">
                         <h2 className="Post_title" title={post.title}>
                             {post.title}

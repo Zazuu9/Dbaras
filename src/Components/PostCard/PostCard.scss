@@ -18,9 +18,17 @@
     }
     .Post_title_message {
         padding: 0px 15px;
+        border-left: 1px solid black;
+        width: 100%;
         .Post_title {
+            max-height: 30px;
+            max-width: 580px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
         .Post_message {
+            margin-top: -10px;
         }
         .Post_categories_price {
             position: absolute;

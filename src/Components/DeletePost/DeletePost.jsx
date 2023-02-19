@@ -26,21 +26,27 @@ function DeletePost({ id }) {
         <div className="DeletePopup">
             <h2>Êtes-vous sur de vouloir supprimer cette publication ?</h2>
             <div className="Delete_Cancel">
-                <button
-                    className="Delete Universal"
-                    onClick={() => {
-                        deletePost();
-                        setTimeout(() => {
-                            setDeleteMessage("");
-                            navigate("/");
-                        }, 2000);
-                    }}
-                >
-                    Oui
-                </button>
-                <button className="Cancel Universal" onClick={cancel}>
-                    Non
-                </button>
+                {deleteMessage === "" ? (
+                    <>
+                        <button
+                            className="Delete Universal"
+                            onClick={() => {
+                                deletePost();
+                                setTimeout(() => {
+                                    setDeleteMessage("");
+                                    navigate("/");
+                                }, 2000);
+                            }}
+                        >
+                            Oui
+                        </button>
+                        <button className="Cancel Universal" onClick={cancel}>
+                            Non
+                        </button>
+                    </>
+                ) : (
+                    ""
+                )}
             </div>
             {deleteMessage ? (
                 <p className="Delete_Message">

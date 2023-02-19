@@ -27,17 +27,15 @@ function ModifyPost({ id }) {
     }, []);
 
     async function getPostInfo() {
-        const resPost = await fetch(BDDService.localPost + "/" + id);
+        const resPost = await fetch(BDDService.sitePost + "/" + id);
 
         const dataPost = await resPost.json();
         setPostInfo(dataPost);
         setReserved(dataPost.reserved);
-        console.log(postInfo);
     }
 
     function test(e) {
         e.preventDefault();
-        console.log(image);
     }
 
     const ModifyPostSubmit = (e) => {
@@ -92,7 +90,6 @@ function ModifyPost({ id }) {
                     setErrorMessage("❌ Impossible de modifié.");
                 } else {
                     setErrorMessage("✅ Publication modifée !");
-                    console.log(image);
                     setTimeout(() => {
                         document.forms["form_modifypost"].reset();
                         // window.location.reload();

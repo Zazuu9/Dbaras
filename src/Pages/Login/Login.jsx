@@ -24,7 +24,7 @@ function Login() {
         userInfo.email = document.getElementById("email").value;
         userInfo.password = document.getElementById("password").value;
 
-        const res = await fetch(BDDService.siteAuth + "/login", {
+        const res = await fetch(BDDService.localAuth + "/login", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             credentials: "include",
